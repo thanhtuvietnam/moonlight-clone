@@ -16,9 +16,8 @@ const Auth = () => {
       )}
      
       <div className='md:bg-black/80 bg-dark */   min-h-screen'>
-        {!isShowSignInBox && <SignUp setIsShowSignInBox={false} />}
-        {isShowSignInBox && <SignIn setIsShowSignInBox={true} />}
-        
+        {!isShowSignInBox && <SignUp setIsShowSignInBox={setIsShowSignInBox} />}
+        {isShowSignInBox && <SignIn setIsShowSignInBox={setIsShowSignInBox} />}       
       </div>
     </>
   );

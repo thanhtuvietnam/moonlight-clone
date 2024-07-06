@@ -44,7 +44,7 @@ const SignUp = ({ setIsShowSignInBox }) => {
     <>
       {currentUser && <ModalNotification type='succes' message={'Sign up succesfully'} />}
       {isLoading && (
-        <div className='z-10 tw-flex-center h-screen relative'>
+        <div className='absolute top-1/2 left-1/2 transform: -translate-x-1/2 transform: -translate-y-1/2 inline-block z-30w-full z-30'>
           <div className='w-28 h-28 border-[10px] rounded-full border-primary border-t-transparent animate-spin'></div>
         </div>
       )}
