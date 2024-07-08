@@ -14,6 +14,8 @@ import { HiOutlineLogout } from 'react-icons/hi';
 import { MdOutlineExplore } from 'react-icons/md';
 import { AiFillGithub } from 'react-icons/ai';
 import { BsFacebook } from 'react-icons/bs';
+import { AiFillStar } from 'react-icons/ai';
+import { BsFillPlayFill } from 'react-icons/bs';
 
 const icons = {
   GiHamburgerMenu,
@@ -32,6 +34,8 @@ const icons = {
   MdOutlineExplore,
   AiFillGithub,
   BsFacebook,
+  AiFillStar,
+  BsFillPlayFill,
 };
 
 export default icons;

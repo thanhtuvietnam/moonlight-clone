@@ -58,10 +58,10 @@ const SignUp = ({ setIsShowSignInBox }) => {
 
           <div className='flex gap-4 mb-8'>
             <button onClick={() => signInWithProvider(new GoogleAuthProvider(), 'google')} className='h-12 w-12 rounded-full bg-white tw-flex-center hover:brightness-75 trasition duration-300'>
-              <FcGoogle style={{ marginLeft: '10px' }} size={25} className='text-primary' />
+              <FcGoogle size={25} className='text-primary' />
             </button>
             <button onClick={() => signInWithProvider(new FacebookAuthProvider(), 'facebook')} className='bg-white rounded-full h-12 w-12 tw-flex-center hover:brightness-75 transition duration-300'>
-              <FaFacebookF style={{ marginLeft: '12px' }} size={25} color='#3d5bbf' />
+              <FaFacebookF size={25} color='#3d5bbf' />
             </button>
           </div>
           <p className='text-lg'>or use your email account:</p>

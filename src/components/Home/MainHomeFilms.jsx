@@ -9,7 +9,12 @@ const MainHomeFilms = ({
 }) => {
   return (
     <>
-      <BannerSlider/>
+      <BannerSlider
+        films={data?.Trending}
+        dataDetail={dataDetail}
+        isLoadingBanner={isLoadingBanner}
+
+      />
       <ul>
         
       </ul>

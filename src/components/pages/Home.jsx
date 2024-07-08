@@ -9,6 +9,16 @@ import { useCurrentViewportView } from '../hooks/useCurrentViewportView.jsx';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { MainHomeFilms, RecommendGenres, TrendingNow } from '../Home/index.js';
 import { Footer } from '../Footer/Footer';
+import { useQuery } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+
+
+import {
+  getHomeMovies,
+  getMoviesBannerInfo,
+  getHomeTvs,
+  getTVBannerInfo
+} from '../../services/home.jsx'
 
 const { GiHamburgerMenu } = icons;
 
@@ -19,6 +29,52 @@ const Home = () => {
   const [currentTab, setCurrentTab] = useState(
     localStorage.getItem('currentTab')|| 'tv'
   );
+  const {
+    data: dataMovie,
+    isLoading: isLoadingMovie,
+    isError: isErrorMovie,
+    error: errorMovie
+  } = useQuery({
+    queryKey: ["home-movies"],
+    queryFn: getHomeMovies
+  })
+  const {
+    data: dataMovieDetail,
+    isLoading: isLoadingMovieDetail,
+    isError: isErrorMovieDetail,
+    error: errorMovieDetail
+  } = useQuery({
+    queryKey: ['detailMovies',dataMovie?.Trending],
+    queryFn:()=> getMoviesBannerInfo(dataMovie?.Trending),
+    enabled: !!dataMovie?.Trending
+  })
+
+  const {
+    data: dataTV,
+    isLoading: isLoadingTV,
+    isError: isErrorTV,
+    error: errorTV
+  } = useQuery({
+    queryKey: ["home-tvs"],
+    queryFn: getHomeTvs
+  })
+  const{
+    data: dataTVDetail,
+    isLoading: isLoadingTVDetail,
+    isError: isErrorTVDetail,
+    error: errorTVDetail
+  } = useQuery ({
+    queryKey: ['detailsTVs',dataTV?.Trending],
+    queryFn: () => getTVBannerInfo(dataTV?.Trending),
+    enabled: !!dataTV?.Trending
+  })
+
+  // console.log(dataMovie)
+  if (isErrorMovie) return <p>ERROR: {errorMovie.message}</p>
+  if (isErrorMovieDetail) return <p>ERROR: {errorMovieDetail.message}</p>
+  if (isErrorTV) return <p>ERROR: {errorTV.message}</p>
+  if(isErrorTVDetail) return <p>ERROR: {errorTVDetail.message}</p>
+
 
   return (
     <>
@@ -62,11 +118,26 @@ const Home = () => {
               >Movie</button>
             </div>
             <div className='flex gap-6 items-center'>
-              <p>CurrentUser</p>
+              <p>Tú lưu</p>
               <LazyLoadImage src='https://photo.znews.vn/w960/Uploaded/qhj_yvobvhfwbv/2018_07_18/Nguyen_Huy_Binh1.jpg' alt='User Aatar' className='w-7 h-7 rounded-full object-cover' effect='opacity' referrerPolicy='no-referrer' />
             </div>
           </div>
-          <MainHomeFilms />
+          {currentTab==='movie' &&(
+            <MainHomeFilms 
+              data={dataMovie}
+              dataDetail={dataMovieDetail}
+              isLoadingBanner={isLoadingMovieDetail}
+              // isLoadingSection={isLoadingMovie}
+            />
+           
+          )}
+          {currentTab==='tv' &&(
+            <MainHomeFilms
+              data={dataTV}
+              dataDetail={dataTVDetail}
+              isLoadingBanner={isLoadingTVDetail}
+            />
+          )}
         </div>
 
         <div className='shrink-0 max-w-[310px] w-full hidden lg:block px-6 top-0 sticky'>

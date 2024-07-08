@@ -1,3 +1,5 @@
+import { IMAGE_URL } from "./constants";
+
 export const converErrorCodeToMessage = (errorCode) => {
   if (errorCode === 'auth/email-already-in-use') return 'Your email is already in use.';
   if (errorCode === 'auth/user-not-found') return 'Your email may be incorrect';
@@ -22,3 +24,5 @@ export const getRandomAvatar =()=>{
   ]
   return avatars[Math.floor(Math.random()* avatars.length)]
 }
+
+export const resizeImage = (imageUrl,width='original') => `${IMAGE_URL}/${width}${imageUrl}`

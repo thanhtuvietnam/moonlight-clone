@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { Home, Auth, Explore, Search,Error } from './components/pages/index.js';
 import { TVInfo, TVWatch } from './components/pages/TV/index.js';
 import { MovieInfo, MovieWatch } from './components/pages/Movie/index.js';
