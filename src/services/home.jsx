@@ -2,7 +2,11 @@ import axios from '../components/shared/axios';
 
 export const getHomeMovies = async () => {
   const endpoints = {
-    Trending: '/trending/movie/day',
+    Trending: "/trending/movie/day",
+    Popular: "/movie/popular",
+    "Top Rated": "/movie/top_rated",
+    Hot: "/trending/movie/day?page=2",
+    Upcoming: "/movie/upcoming"
   };
   const responses = await Promise.all(Object.entries(endpoints).map((endpoint) => axios.get(endpoint[1])));
   // console.log(responses)
@@ -14,7 +18,7 @@ export const getHomeMovies = async () => {
     }));
     return final;
   }, {});
-  //   console.log(data)
+    // console.log(data)
   return data;
 };
 export const getMoviesBannerInfo = async (movies) => {
@@ -67,6 +71,10 @@ export const getMoviesBannerInfo = async (movies) => {
 export const getHomeTvs = async () => {
   const endpoints = {
     Trending: '/trending/tv/day',
+    Popular: "/tv/popular",
+    "Top Rated": "/tv/top_rated",
+    Hot: "/trending/tv/day?page=2",
+    "On the air": "/tv/on_the_air"
   };
   const responses = await Promise.all(Object.entries(endpoints)?.map((endpoint) => axios.get(endpoint[1])));
   console.log(responses);
@@ -77,7 +85,7 @@ export const getHomeTvs = async () => {
     }));
     return final;
   }, {});
-  console.log(data);
+  // console.log(data);
   return data;
 };
 
@@ -85,7 +93,7 @@ export const getTVBannerInfo = async (tvs) => {
   const detailRes = await Promise.all(tvs.map((tv) => axios.get(`/tv/${tv.id}`)));
 
   const translationRes = await Promise.all(tvs.map((tv) => axios.get(`/tv/${tv.id}/translations`)));
-  console.log(translationRes)
+  // console.log(translationRes)
 
   const translations = translationRes.map((item) =>
     item.data.translations
@@ -98,7 +106,7 @@ export const getTVBannerInfo = async (tvs) => {
       }, [])
       .map((translation) => translation.data.name)
   );
-  console.log(translations);
+  // console.log(translations);
   const translationOverViews = translationRes.map((item2) =>
     item2.data.translations
       .filter((translationOverView) => ['vi', 'fr', 'ja', 'pt', 'ru', 'es'].includes(translationOverView.iso_639_1))
@@ -117,3 +125,7 @@ export const getTVBannerInfo = async (tvs) => {
     translationOverView: translationOverViews[index],
   }));
 };
+
+export const getTrendingNow = async ()=>{
+  return (await axios.get('/trending/all/day?page=2')).data.results
+}

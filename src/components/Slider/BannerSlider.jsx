@@ -13,7 +13,7 @@ import { useCurrentViewportView } from '../hooks/useCurrentViewportView';
 
 const { AiFillStar, BsFillPlayFill } = icons;
 
-export const BannerSlider = ({ films, dataDetail, isLoadingBanner }) => {
+const BannerSlider = ({ films, dataDetail, isLoadingBanner }) => {
   const { isMobile } = useCurrentViewportView();
  
   return (
@@ -78,3 +78,5 @@ export const BannerSlider = ({ films, dataDetail, isLoadingBanner }) => {
     </div>
   );
 };
+
+export default BannerSlider;

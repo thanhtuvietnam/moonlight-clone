@@ -127,7 +127,7 @@ const Home = () => {
               data={dataMovie}
               dataDetail={dataMovieDetail}
               isLoadingBanner={isLoadingMovieDetail}
-              // isLoadingSection={isLoadingMovie}
+              isLoadingSection={isLoadingMovie}
             />
            
           )}
